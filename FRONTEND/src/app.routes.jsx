@@ -8,19 +8,19 @@ import Interview from "./features/interview/pages/interview";
 
 export const router = createBrowserRouter([
     {
-    path: "/login",
+    path: "${window.location.origin}/login",
     element: <Login />
   },    
   {
-    path: "/ragister",
+    path: "${window.location.origin}/ragister",
     element: <Ragister />
   },
   {
-    path: "/",
+    path: "${window.location.origin}/",
     element: <Protected><Home /></Protected>
   },
   {
-        path:"/interview/:interviewId",
+        path:"${window.location.origin}/interview/:interviewId",
         element: <Protected><Interview /></Protected>
     }
 ]);
