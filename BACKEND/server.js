@@ -8,10 +8,11 @@ const frontendBuildPath = path.join(__dirname, '../client/dist');
 
 connectDB();
 
-app2.use(express.static(frontendBuildPath));
+const frontendDist = path.join(__dirname, '../FRONTEND/dist');
+app2.use(express.static(frontendDist));
 
 app2.get('/*splat', (req, res) => {
-  res.sendFile(path.join(frontendBuildPath, 'index.html'));
+  res.sendFile(path.join(frontendDist, 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
