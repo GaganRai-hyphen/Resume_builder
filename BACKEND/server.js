@@ -8,7 +8,7 @@ const app2 = require('./src/app');
 
 connectDB();
 
-const frontendDist = path.join(__dirname, '../frontend/dist');
+const frontendDist = path.join(__dirname, '../FRONTEND/dist');
 app.use(express.static(frontendDist));
 
 app.get('/*splat', (req, res) => {
