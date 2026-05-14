@@ -10,7 +10,7 @@ connectDB();
 
 app2.use(express.static(path.join(__dirname, 'client/dist')));
 
-app2.get('*', (req, res) => {
+app2.get('/*splat', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
 });
 
