@@ -5,26 +5,40 @@ const multer = require("multer")
 
 const app = express()
 
-const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
+
+const allowedOrigins = [
+    "http://localhost:5173", 
+    "https://gen-ai-integrated-resume-builder.onrender.com"
+];
+
 app.use(cors({
-    origin: allowedOrigin,
+    origin: function (origin, callback) {
+        
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
     credentials: true
 }))
 
-/* require all the routes here */
+
 const authRouter = require("./routes/auth.routes")
 const interviewRouter = require("./routes/interview.routes")
 
 
-/* using all the routes here */
 app.use("/api/auth", authRouter)
 app.use("/api/interview", interviewRouter)
 
+
 app.use((err, req, res, next) => {
+   
     if (err instanceof multer.MulterError) {
         return res.status(400).json({
             message: err.message
@@ -37,10 +51,10 @@ app.use((err, req, res, next) => {
         })
     }
 
+  
     return res.status(err.statusCode || 500).json({
         message: err.message || "Internal Server Error"
     })
 })
-
 
 module.exports = app
