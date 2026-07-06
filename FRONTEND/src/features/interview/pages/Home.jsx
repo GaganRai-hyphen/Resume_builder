@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import "../style/home.scss";
+import "../style/home.scss"; // ensure path matches your structure
 import { useInterview } from '../hooks/useInterview'; 
 import { useNavigate } from 'react-router';
 
@@ -55,7 +55,7 @@ const Home = () => {
     if (loading) {
         return (
             <main className='loading-screen'>
-                <h1>Loading your interview plan...</h1>
+                <div className="loader">Creating your strategy...</div>
             </main>
         );
     }
@@ -75,7 +75,7 @@ const Home = () => {
                     <div className='panel panel--left'>
                         <div className='panel__header'>
                             <span className='panel__icon'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                             </span>
                             <h2>Target Job Description</h2>
                             <span className='badge badge--required'>Required</span>
@@ -104,7 +104,7 @@ const Home = () => {
                     <div className='panel panel--right'>
                         <div className='panel__header'>
                             <span className='panel__icon'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                             </span>
                             <h2>Your Profile</h2>
                         </div>
@@ -119,7 +119,7 @@ const Home = () => {
                             {!selectedFile ? (
                                 <label className='dropzone' htmlFor='resume'>
                                     <span className='dropzone__icon'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" /><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c084fc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" /><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" /></svg>
                                     </span>
                                     <p className='dropzone__title'>Click to upload or drag &amp; drop</p>
                                     <p className='dropzone__subtitle'>PDF or DOCX (Max 5MB)</p>
@@ -134,15 +134,15 @@ const Home = () => {
                                     />
                                 </label>
                             ) : (
-                                /* Active Staged Document Card */
-                                <div className='staged-file-card' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', border: '1px solid #475569', borderRadius: '8px', background: 'rgba(30, 41, 59, 0.5)' }}>
+                                /* Active Staged Document Card - Updated to Glassmorphism */
+                                <div className='staged-file-card' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', overflow: 'hidden' }}>
                                         <span style={{ fontSize: '24px' }}>📄</span>
                                         <div style={{ overflow: 'hidden' }}>
-                                            <p style={{ margin: 0, fontWeight: 600, fontSize: '14px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                            <p style={{ margin: 0, fontWeight: 500, fontSize: '0.9rem', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                                 {selectedFile.name}
                                             </p>
-                                            <p style={{ margin: 0, fontSize: '12px', color: '#94a3b8' }}>
+                                            <p style={{ margin: 0, fontSize: '0.75rem', color: '#a1a1aa' }}>
                                                 {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB
                                             </p>
                                         </div>
@@ -150,7 +150,7 @@ const Home = () => {
                                     <button 
                                         onClick={handleRemoveFile} 
                                         title="Clear attachment"
-                                        style={{ background: 'none', border: 'none', color: '#ef4444', fontSize: '18px', cursor: 'pointer', padding: '4px 8px' }}
+                                        style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', color: '#ef4444', fontSize: '18px', cursor: 'pointer', padding: '2px 8px', borderRadius: '6px', transition: 'all 0.2s' }}
                                     >
                                         &times;
                                     </button>
@@ -195,10 +195,12 @@ const Home = () => {
                         {reports.map(reportItem => (
                             <li key={reportItem._id} className='report-item' onClick={() => navigate(`/interview/${reportItem._id}`)}>
                                 <h3>{reportItem.title || 'Untitled Position'}</h3>
-                                <p className='report-meta'>Generated on {new Date(reportItem.createdAt).toLocaleDateString()}</p>
-                                <p className={`match-score ${reportItem.matchScore >= 80 ? 'score--high' : reportItem.matchScore >= 60 ? 'score--mid' : 'score--low'}`}>
-                                    Match Score: {reportItem.matchScore}%
-                                </p>
+                                <div className="report-details">
+                                    <p className='report-meta'>Generated on {new Date(reportItem.createdAt).toLocaleDateString()}</p>
+                                    <p className={`match-score ${reportItem.matchScore >= 80 ? 'score--high' : reportItem.matchScore >= 60 ? 'score--mid' : 'score--low'}`}>
+                                        Match Score: {reportItem.matchScore}%
+                                    </p>
+                                </div>
                             </li>
                         ))}
                     </ul>
